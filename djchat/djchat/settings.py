@@ -36,6 +36,7 @@ INSTALLED_APPS = [
 
     # External Apps
     'drf_spectacular',
+    'rest_framework',
 
 ]
 
@@ -135,5 +136,5 @@ SPECTACULAR_SETTINGS = {
     'TITLE': 'Your Project API',
     'DESCRIPTION': 'Your project description',
     'VERSION': '1.0.0',
-    'SERVE_INCLUDE_SCHEMA': True,
+    'SERVE_INCLUDE_SCHEMA': False,
 }
