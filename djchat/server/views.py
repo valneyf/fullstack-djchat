@@ -1,10 +1,9 @@
 from django.db.models import Count
-from django.shortcuts import render
 from rest_framework import viewsets
 from rest_framework.exceptions import AuthenticationFailed, ValidationError
 from rest_framework.response import Response
 
-from .models import Channel, Server
+from .models import Server
 from .schema import server_list_docs
 from .serializer import ServerSerializer
 
@@ -50,11 +49,11 @@ class ServerListViewSet(viewsets.ViewSet):
 
             GET /servers/?by_user=true&qty=10
         """
-        category = self.query_params.get("category")
-        qty = self.query_params.get("qty")
-        by_user = self.query_params.get("by_user") == "true"
-        by_serverid = self.query_params.get("by_serverid")
-        with_num_members = self.query_params.get("with_num_members") == "true"
+        category = request.query_params.get("category")
+        qty = request.query_params.get("qty")
+        by_user = request.query_params.get("by_user") == "true"
+        by_serverid = request.query_params.get("by_serverid")
+        with_num_members = request.query_params.get("with_num_members") == "true"
 
         if category:
             self.queryset = self.queryset.filter(category__name=category)
